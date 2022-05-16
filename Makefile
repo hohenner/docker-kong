@@ -21,3 +21,8 @@ release-rhel: build
 	echo $$RHEL_REGISTRY_KEY | docker login -u unused scan.connect.redhat.com --password-stdin
 	docker tag kong-rhel scan.connect.redhat.com/ospid-dd198cd0-ed8b-41bd-9c18-65fd85059d31/kong:$$TAG
 	docker push scan.connect.redhat.com/ospid-dd198cd0-ed8b-41bd-9c18-65fd85059d31/kong:$$TAG
+
+release-other: build
+	echo $$REGISTRY_KEY | docker login -u unused <new_repository> --password-stdin
+	docker tag kong-rhel <new-repository>/kong:$$TAG
+	docker push <new-repository>/kong:$$TAG
